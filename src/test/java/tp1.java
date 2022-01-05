@@ -55,7 +55,7 @@ public class tp1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        WebElement selectedProduct = driver.findElement(By.cssSelector("[data-asin=\"B00D2I1VK0\"]"));
+        WebElement selectedProduct = driver.findElement(By.cssSelector("[data-asin='B00D2I1VK0']"));
         selectedProduct.click();
         // Adding selected product to cart
         WebElement buttonAddCart = driver.findElement(By.id("add-to-cart-button"));
