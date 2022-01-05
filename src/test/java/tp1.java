@@ -3,6 +3,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,7 +19,11 @@ public class tp1 {
         //Accepter les cookies
         WebElement buttonCookies = driver.findElement(By.id("sp-cc-accept"));
         buttonCookies.click();
+    }
 
+    @AfterMethod
+    public void teardown(){
+        driver.quit();
     }
 
     @Test
@@ -29,10 +34,7 @@ public class tp1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        //Accepter les cookies
-
-
+        
         WebElement barreRecherche = driver.findElement(By.id("twotabsearchtextbox"));
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
@@ -40,9 +42,6 @@ public class tp1 {
         /*driver.findElement(By.name("field-keywords"));
         driver.findElement(By.cssSelector(""));
         driver.findElement(By.xpath(""));*/
-
-        driver.quit();
-
 
     }
 
@@ -62,9 +61,6 @@ public class tp1 {
         // Adding selected product to cart
         WebElement buttonAddCart = driver.findElement(By.id("add-to-cart-button"));
         buttonAddCart.click();
-
-        driver.quit();
-
 
     }
 }
