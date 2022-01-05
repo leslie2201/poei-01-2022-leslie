@@ -7,6 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class tp1 {
     //Chercher une machine à raclette sur amazon
     WebDriver driver;
@@ -29,12 +31,6 @@ public class tp1 {
     @Test
     public void test1(){
 
-        try {
-            Thread.sleep(1000);  // mecanisme à eviter
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
         WebElement barreRecherche = driver.findElement(By.id("twotabsearchtextbox"));
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
@@ -51,11 +47,17 @@ public class tp1 {
         WebElement barreRecherche = driver.findElement(By.id("twotabsearchtextbox"));
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
-        try {
+
+        //IMPLICIT WAIT 2 seconds pour ce cas
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+
+        // sleep Method
+        /*try {
             Thread.sleep(2000);  // mecanisme à eviter
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
+
         WebElement selectedProduct = driver.findElement(By.cssSelector("[data-asin='B00D2I1VK0']"));
         selectedProduct.click();
         // Adding selected product to cart
