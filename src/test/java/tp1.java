@@ -50,8 +50,8 @@ public class tp1 {
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
 
-        //IMPLICIT WAIT 2 seconds pour ce cas -> mecanisme à éviter
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        /*IMPLICIT WAIT 2 seconds pour ce cas -> mecanisme à éviter
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));*/
 
         // sleep Method
         /*try {
@@ -70,7 +70,7 @@ public class tp1 {
 
     @Test
     public void testLivres(){
-        
+
         // Creation du chronomètre
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         driver.findElement(By.id("nav-hamburger-menu")).click();
