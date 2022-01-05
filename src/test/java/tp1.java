@@ -3,6 +3,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -48,7 +50,7 @@ public class tp1 {
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
 
-        //IMPLICIT WAIT 2 seconds pour ce cas
+        //IMPLICIT WAIT 2 seconds pour ce cas -> mecanisme à éviter
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
         // sleep Method
@@ -63,6 +65,21 @@ public class tp1 {
         // Adding selected product to cart
         WebElement buttonAddCart = driver.findElement(By.id("add-to-cart-button"));
         buttonAddCart.click();
+
+    }
+
+    @Test
+    public void testLivres(){
+        
+        // Creation du chronomètre
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        driver.findElement(By.id("nav-hamburger-menu")).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".hmenu-item[data-menu-id='10']")));
+        driver.findElement(By.cssSelector(".hmenu-item[data-menu-id='10']")).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("ul.hmenu-visible > li:nth-child(3)")));
+        driver.findElement(By.cssSelector("ul.hmenu-visible > li:nth-child(3) > a")).click();
 
     }
 }
