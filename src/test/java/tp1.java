@@ -3,17 +3,27 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class tp1 {
-
     //Chercher une machine à raclette sur amazon
+    WebDriver driver;
+
+    @BeforeMethod
+    public void setup(){
+        driver = new ChromeDriver();
+        driver.get("https://www.amazon.fr");
+        driver.manage().window().maximize();
+        //Accepter les cookies
+        WebElement buttonCookies = driver.findElement(By.id("sp-cc-accept"));
+        buttonCookies.click();
+
+    }
 
     @Test
     public void test1(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.amazon.fr");
-        driver.manage().window().maximize();
+
         try {
             Thread.sleep(1000);  // mecanisme à eviter
         } catch (InterruptedException e) {
@@ -22,8 +32,7 @@ public class tp1 {
 
         //Accepter les cookies
 
-        WebElement buttonCookies = driver.findElement(By.id("sp-cc-accept"));
-        buttonCookies.click();
+
         WebElement barreRecherche = driver.findElement(By.id("twotabsearchtextbox"));
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
@@ -39,14 +48,7 @@ public class tp1 {
 
     @Test
     public void test2(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.amazon.fr");
-        driver.manage().window().maximize();
 
-        //Accepter les cookies
-
-        WebElement buttonCookies = driver.findElement(By.id("sp-cc-accept"));
-        buttonCookies.click();
         WebElement barreRecherche = driver.findElement(By.id("twotabsearchtextbox"));
         barreRecherche.sendKeys("machine a raclette");
         barreRecherche.sendKeys(Keys.ENTER);
