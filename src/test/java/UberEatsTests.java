@@ -23,12 +23,13 @@ public class UberEatsTests {
         driver.get("https://www.ubereats.com/fr");
         driver.manage().window().maximize();
         //Accepter les cookies
-        WebElement buttonCookies = driver.findElement(By.cssSelector(".bc.gh.gi.gl.bj.bk.bl.bm.bn.bo.bt.bu.ba.bb"));
+        WebElement buttonCookies = driver.findElement(By.cssSelector("#cookie-banner button.bj"));
         buttonCookies.click();
     }
 
     @Test
     public void addBurgerToCart(){
+
         //Arrange
         int timeoutSearchLoad=10;
         String location = "La Defense";
@@ -36,7 +37,7 @@ public class UberEatsTests {
         By autocompleteSelector = By.cssSelector("#location-typeahead-home-menu > li");
         By searchCategorySelector = By.cssSelector("img[alt='Burgers']");
         By kingMarcelRestaurant = By.cssSelector("a[href='/fr/store/king-marcel-nanterre/07TTIgUiQPWyz4uq4_H35w'] > h3");
-        By foodItemSelector = By.cssSelector("div[tabindex='0']");
+        By productMenuSelector = By.cssSelector("div[tabindex='0']");
         By addToCartButtonSelector=By.cssSelector(".spacer._24 + button.b8");
         By cartSelector = By.cssSelector("button[aria-label='checkout'] > div");
         String expectedCartItems = "1";
@@ -60,8 +61,8 @@ public class UberEatsTests {
         driver.findElement(kingMarcelRestaurant).click();
 
 
-        wait.until(ExpectedConditions.elementToBeClickable(foodItemSelector));
-        driver.findElements(foodItemSelector).get(0).click();
+        wait.until(ExpectedConditions.elementToBeClickable(productMenuSelector));
+        driver.findElements(productMenuSelector).get(0).click();
 
 
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonSelector));
