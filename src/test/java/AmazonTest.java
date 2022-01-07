@@ -28,10 +28,13 @@ public class AmazonTest {
     public void nintendoSwitchAddToCartPriceTest() {
         //Arrange
         String productName = "Nintendo Switch Oled";
-
         //Act
      Mainpage mainPage = new Mainpage(driver);
      mainPage.searchProduct(productName);
+
+     SearchResultPage searchResultPage = new SearchResultPage(driver);
+     searchResultPage.openResult(0);
+
 
      //Assert
     }
@@ -44,6 +47,9 @@ public class AmazonTest {
         //Act
         Mainpage mainPage = new Mainpage(driver);
         mainPage.searchProduct(productName);
+
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        searchResultPage.openResult(5);
 
         //Assert
     }
