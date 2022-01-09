@@ -19,21 +19,26 @@ public class ProductPage {
 
 
     public ProductPage(WebDriver driver){
+
         this.driver=driver;
     }
 
 
-    public void addToCart(){
-
+    public ProductPage addToCart(){
         driver.findElement(addToCartSelector).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSidebar));
         wait.until(ExpectedConditions.elementToBeClickable(addCoverageButtonSelector));
+        return this;
     }
 
-    public void noCoverage(){
+    public ConfirmationAddToCartPage noCoverage(){
         driver.findElement(noCoverageButtonSelector).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutConfirmationImg));
         wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationImageSelector));
+
+        ConfirmationAddToCartPage confirmationAddToCartPage = new ConfirmationAddToCartPage(driver);
+
+        return confirmationAddToCartPage;
     }
 
 

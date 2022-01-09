@@ -20,9 +20,15 @@ public class Mainpage {
         this.driver=driver;
     }
 
-    public void searchProduct(String productName){
-     driver.findElement(searchBarSelector).sendKeys(productName + Keys.ENTER);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSearch));
-        wait.until(ExpectedConditions.elementToBeClickable(searchResultSelector));
+    public SearchResultPage searchProduct(String productName){
+            // On trouve l'element et interagir avec l'element
+         driver.findElement(searchBarSelector).sendKeys(productName + Keys.ENTER);
+
+         //Synchronisation
+         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSearch));
+         wait.until(ExpectedConditions.elementToBeClickable(searchResultSelector));
+
+         SearchResultPage searchResultPage = new SearchResultPage(driver);
+        return searchResultPage;
     }
 }

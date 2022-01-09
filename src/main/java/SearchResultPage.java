@@ -10,12 +10,16 @@ public class SearchResultPage {
     By searchResultSelector = By.cssSelector("[data-component-type='s-search-result']");
 
     public SearchResultPage(WebDriver driver) {
+
         this.driver = driver;
     }
 
-    public void openResult(int resultIndex) {
+    public ProductPage openResult(int resultIndex) {
         List<WebElement> listOfResults = driver.findElements(searchResultSelector);
         listOfResults.get(resultIndex).click();
+
+        ProductPage productPage = new ProductPage(driver);
+        return productPage;
     }
 
 }
