@@ -29,8 +29,8 @@ public class AppleTest {
     @Test
     public void iphone13ProMaxAddToCartPriceTest() {
         //Arrange
-        String expectedPrice ="1379,00";
-        String expectedCartTitle="Le montant total de votre Panier est de 1379,00";
+        String expectedPrice ="1 379,00";
+        String expectedCartTitle="Le montant total de votre Panier est de 1 379,00";
         String expectedProductName="iPhone 13 Pro Max 256 Go Bleu Alpin";
         //Act
         MainPage mainPage = new MainPage(driver);
@@ -45,11 +45,13 @@ public class AppleTest {
                 .openCartPage();
 
         //Assert
+        System.out.println(cartPage.getCartTitle());
         Assert.assertTrue(cartPage.getCartTitle().contains(expectedCartTitle),"le titre du panier ne correspond pas");
+
         Assert.assertTrue(cartPage.getProductName(0).contains(expectedProductName),"le nom du produit ne correspond pas");
         Assert.assertTrue(cartPage.getProductPrice(0).contains(expectedPrice),"le prix ne correspond pas");
-        Assert.assertTrue(cartPage.getSubtotal().contains(expectedPrice),"Le prix ne correspond pas");
-        Assert.assertTrue(cartPage.getTotal().contains(expectedPrice),"Le prix ne correspond pas");
+        Assert.assertTrue(cartPage.getSubtotal().contains(expectedPrice),"Le sous total ne correspond pas");
+        Assert.assertTrue(cartPage.getTotal().contains(expectedPrice),"Le total ne correspond pas");
 
 
     }
