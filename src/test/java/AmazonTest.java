@@ -14,7 +14,8 @@ public class AmazonTest {
 
     @BeforeMethod
     public void setup(){
-      driver = new ChromeDriver();
+      //driver = new ChromeDriver();
+        
       driver.get("https://www.amazon.fr");
       driver.manage().window().maximize();
 
